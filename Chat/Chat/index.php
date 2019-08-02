@@ -27,7 +27,7 @@
     	// display name on page
     	$("#name-area").html("You are: <span>" + name + "</span>");
     	
-    	// kick off chat
+    	
         var chat =  new Chat();
     	$(function() {
     	
@@ -38,19 +38,19 @@
              
                  var key = event.which;  
            
-                 //all keys including return.  
+                 
                  if (key >= 33) {
                    
                      var maxLength = $(this).attr("maxlength");  
                      var length = this.value.length;  
                      
-                     // don't allow new content if length is maxed out
+                  
                      if (length >= maxLength) {  
                          event.preventDefault();  
                      }  
                   }  
     		 																																																});
-    		 // watch textarea for release of key press
+    		 
     		 $('#sendie').keyup(function(e) {	
     		 					 
     			  if (e.keyCode == 13) { 
@@ -84,7 +84,7 @@
 
     <div id="page-wrap">
     
-        <h2>jQuery/PHP Chat</h2>
+        <h2>Users Chat</h2>
         
         <p id="name-area"></p>
         
