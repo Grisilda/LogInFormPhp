@@ -15,7 +15,13 @@
     <script src="../js/prov.js"></script>
     <script src="../js/get_data.js"></script>
     <link rel="stylesheet" href="../css/user_css.css">
-</head>
+<!--     <script src="../js/change_data.js"></script>
+ --></head>
+ <style>
+  .aaa d{
+    dispay:block;
+  }
+ </style>
 <body>
     <div class="navbar">
       <p style="color: blue; font-size:50px;margin-left: 20%;margin-top: 5%;"> User Panel </p>
@@ -47,12 +53,13 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="worker_preferences.html">
-                            <span class="glyphicon glyphicon-cog"></span>
+                        <!-- <a   href="worker_preferences.html"> -->
+                        <a   href="worker_preferences.html" id="aaa">
+                            <span  class="glyphicon glyphicon-cog"></span>
                         </a>
                     </li>
                     <li>
-                        <a  href="#email">
+                        <a  href="../../Chat/Chat/index.php">
                             <span class="glyphicon glyphicon-envelope"></span>
                         </a>
                     </li>
@@ -69,13 +76,13 @@
       <div class="tab-pane active in" id="home">
         <form id="tab" method="post" action= "user.php">
           <!-- shtimi i vendit te fotos -->
-        <div>
+        <span  class="change">
            <p id="nameLabel" >Bosh </p>
            <p id="surname"> Bosh</p>
            <p id="email">Bosh</p>
            <p id="address">Bosh</p>
            <img src="" id="photo" />
-        </div>  
+        </span>  
         
          
       </div>
@@ -87,5 +94,6 @@
         </div>
   </div>
 </div>
-<body>
+<!-- <p id="aaa"> KKK</p>
+ --><body>
 </html>
