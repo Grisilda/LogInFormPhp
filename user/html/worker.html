@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -15,22 +16,44 @@
     <script src="../js/prov.js"></script>
     <script src="../js/get_data.js"></script>
     <link rel="stylesheet" href="../css/user_css.css">
-<!--     <script src="../js/change_data.js"></script>
- --></head>
+<!--     <script src="../js/change_data.js"></script>--></head>
+ <script>
+function myFunction(){
+   //   browser.history.deleteAll();
+
+   // window.location.href = "../../register/html/logimi2.html";
+   for(var i=0;i<10;i++){
+  window.location.replace('../../register/html/logimi2.html');
+ }
+  // Page.ClientScript.RegisterStartupScript(this.GetType(),"clearHistory","ClearHistory();",true);
+  // var Backlen=history.length;   
+  // history.go(-Backlen); 
+
+  // wind
+          // var Backlen=history.length;  
+          //  history.go(-Backlen);
+          // window.location.href="../../register/html/logimi2.html";ow.location.href='../../register/html/logimi2.html';  
+
+}
+</script> 
+ <script type="text/javascript" src="../../register/js/after_logout.js"></script>
  <style>
   .aaa d{
     dispay:block;
   }
  </style>
-<body>
+<body  >
     <div class="navbar">
-      <p style="color: blue; font-size:50px;margin-left: 20%;margin-top: 5%;"> User Panel </p>
-        <div class="dropdown">
+      <p style="color: blue; font-size:40px;margin-right: 20%;margin-top: 5%;"> User Panel </p>
+        <div class="dropdown" style="margin-left:50%;">
           <button class="dropbtn">Welcome,user
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="../../register/html/logimi2.html">Logout</a>
+          <!--   <a href="../../register/html/logimi2.html">Logout</a> -->
+          <form  action="../../register/php/logout.php"  style="display: block;"> 
+          <button  >Log out</button>
+          </form> 
           </div>
         </div> 
     </div>
@@ -59,7 +82,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="../../Chat/Chat/index.php">
+                        <a  href="../../Chat/Chat/kryesore.html">
                             <span class="glyphicon glyphicon-envelope"></span>
                         </a>
                     </li>
@@ -94,6 +117,6 @@
         </div>
   </div>
 </div>
-<!-- <p id="aaa"> KKK</p>
- --><body>
+
+<body>
 </html>
