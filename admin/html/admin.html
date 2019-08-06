@@ -2,8 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <script type="text/javascript" src="../../assets/jquery.js"></script>
+ <script type="text/javascript" src="../../assets/canvasjs.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="../../register/js/after_logout.js"></script>
+
+
+
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -33,17 +45,44 @@
            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />   
- <script src="../js/get_data_from_salary.js"></script>
+<!--  <script src="../js/get_data_from_salary.js"></script> -->
+  <script type="text/javascript" src="../../assets/jquery.js"></script>
+
+<!-- shtime per data table server -->
+<!-- Datatable CSS -->
+<link href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+
+<!-- jQuery Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Datatable JS -->
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<!-- mbaron -->
+<link rel="stylesheet" type="text/css" href="../../DataTable/datatables.min.css"/>
+ 
+<script type="text/javascript" src="../../DataTable/datatables.min.js"></script>
+<script>
+function myFunction(){
+  // window.location.href = "../../register/html/logimi2.html";
+  for(var i=0;i<10;i++){
+ window.location.replace('../../register/html/logimi2.html');
+}
+  // Page.ClientScript.RegisterStartupScript(this.GetType(),"clearHistory","ClearHistory();",true);
+}
+</script>
 </head>
-<body>
+<body >
 <div class="navbar">
-<p style="color: blue; font-size:50px;margin-right: 50%;"> Admin Panel </p>
-  <div class="dropdown">
-    <button class="dropbtn">Welcome,admin
+<p style="color: blue; font-size:40px;margin-right: 50%;"> Admin Panel </p>
+  <div class="dropdown" style="margin-left:50%;">
+    <button class="dropbtn" >Welcome,admin
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../../register/html/logimi2.html">Logout</a>
+      <!-- <a href="../../register/html/logimi2.html">Logout</a> -->
+     <form  action="../../register/php/logout.php" style="display: block;"> 
+         <button  >Log out</button>
+     </form>
     </div>
   </div> 
 </div>
@@ -52,17 +91,17 @@
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked" style="font-size: 15px;outline-style: double;">
 				<li><a href="add_worker.html">Create user</a></li>
-				<li><a href="delete_worker.html">Delete worker</a></li>
-				<li><a href="../../user/html/worker_preferences.html">Modify worker</a></li>
+				<li><a href="delete_worker.html">Delete user</a></li>
+				<li><a href="../../user/html/worker_preferences.html">Modify user</a></li>
 			</ul>
 		</div>
  </div>  
            <br /><br />  
            <div class="container">  
-                <h3 align="center">Top payed</h3>  
+                <h3 align="center">All users</h3>  
                 <br />  
                 <div class="table-responsive">  
-                     <table id="employee_data" class="table table-striped table-bordered">  
+                     <table id="employee_data" class="display" >  
                           <thead>  
                                <tr>  
                                     <td>Name</td>  
@@ -97,17 +136,70 @@
  //    } );
 
  // });  
-$( document ).ready(function() {
-$('#employee_data').DataTable({
-         "bProcessing": true,
+
+$( document ).ready(function getJSON() {
+var table = $('#employee_data').DataTable({
+        "bProcessing": true,
         "serverSide": true,
+        
           "ajax":{
              url :"../php/server_side.php", // json datasource
-            type: "post",  // type of 
+             type: "post",  // type of 
              }
     } );
-
- }); 
+ 
+ });
  </script>
-<body>
+ 
+ <div id="chart-container">
+        <canvas id="graphCanvas"></canvas>
+    </div>
+    <script>
+        $(document).ready(function () {
+            showGraph();
+        });
+
+
+        function showGraph()
+        {
+            {
+                $.post("../php/charts.php",
+                function (data)
+                {
+                    console.log(data);
+                    data=JSON.parse(data);
+                    var ussername= [];
+                    var salary = [];
+
+                    for (var i in data) {
+                        ussername.push(data[i].ussername);
+                        console.log(data[i].ussername);
+                        salary.push(data[i].salary);
+                    }
+
+                    var chartdata = {
+                        labels:ussername,
+                        datasets: [
+                            {
+                                label: 'From top to least payed',
+                                backgroundColor: '#49e2ff',
+                                borderColor: '#46d5f1',
+                                hoverBackgroundColor: '#CCCCCC',
+                                hoverBorderColor: '#666666',
+                                data: salary
+                            }
+                        ]
+                    };
+
+                    var graphTarget = $("#graphCanvas");
+
+                    var barGraph = new Chart(graphTarget ,{
+                        type: 'bar',
+                        data: chartdata
+                    });
+                });
+            }
+        }
+        </script>
+</body>
 </html>
